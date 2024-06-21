@@ -28,6 +28,7 @@ LoginHeaders = {
 LoginUrl = 'https://tgapp-api.matchain.io/api/tgapp/v1/user/login'
 ProfileUrl = 'https://tgapp-api.matchain.io/api/tgapp/v1/user/profile'
 CheckRewardsUrl = 'https://tgapp-api.matchain.io/api/tgapp/v1/point/reward'
+ClaimMining = 'https://tgapp-api.matchain.io/api/tgapp/v1/point/reward/claim'
 StartMiningUrl = 'https://tgapp-api.matchain.io/api/tgapp/v1/point/reward/farming'
 ListTaskUrl = 'https://tgapp-api.matchain.io/api/tgapp/v1/point/task/list'
 CompleteTaskUrl = 'https://tgapp-api.matchain.io/api/tgapp/v1/point/task/complete'
@@ -161,7 +162,19 @@ def main():
                                 if start_mining_response.status_code == 200:
                                     print(f"{Fore.GREEN}[ Mining ] : Memulai mining")
                                 else:
-                                    print(f"{Fore.RED}[ Mining ] : Mining gagal: {start_mining_response.status_code}, {start_mining_response.text}")
+                                    print(f"{Fore.RED}[ Mining ] : Mining gagal")
+                            elif time_remaining_ms == 0 & reward > 0:
+                                claim_mining = requests.post(ClaimMining, headers=profile_headers, json=profile_data)
+                                if claim_mining.status_code == 200:
+                                    print(f"{Fore.GREEN}[ Mining ] : Berhasil claim mining")
+                                    start_mining_response = requests.post(StartMiningUrl, headers=profile_headers, json=profile_data)
+
+                                    if start_mining_response.status_code == 200:
+                                        print(f"{Fore.GREEN}[ Mining ] : Memulai mining kembali")
+                                    else:
+                                        print(f"{Fore.RED}[ Mining ] : Gagal memulai mining kembali")
+                                else:
+                                    print(f"{Fore.RED}[ Mining ] : Gagal claim mining")
                             else:
                                 print(f"{Fore.YELLOW}[ Mining ] : Mining sedang berjalan")
 
@@ -197,7 +210,7 @@ def main():
                                             else:
                                                 print(f"{Fore.RED}[ Task ] : Gagal menyelesaikan {task['name']}")
                                 else:
-                                    print(f"{Fore.RED}[ Task List ] : List task request failed: {list_task_response.status_code}, {list_task_response.text}")
+                                    print(f"{Fore.RED}[ Task List ] : List task request failed")
 
                             gameHeaders = get_headers_game(token)
                             checkTiket = requests.get(CheckTiket, headers=gameHeaders).json().get('data', {}).get('game_count')
