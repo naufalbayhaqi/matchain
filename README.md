@@ -17,7 +17,7 @@ Install with python
   3. Buka Bot Matchain di PC (Telegram Desktop)
   4. Inspect Element > Application > Session Storage > Pilih Matchain > Ambil tgWebAppData
   5. Klik kanan lalu copy value (query_id=xxxx atau user=xx) paste di initdata.txt
-  6. py matchain.py
+  6. python3 matchain.py (Whatever gimana cara manggil pythonnya)
 
 Contact : (https://t.me/n_bayhaqi)
 
