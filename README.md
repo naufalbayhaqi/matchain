@@ -22,4 +22,4 @@ Install with python
 Contact : (https://t.me/n_bayhaqi)
 
 ## Screenshot
-![App Screenshot]([https://i.ibb.co.com/pd4mYF5/Cuplikan-layar-2024-06-02-210351.png](https://i.ibb.co.com/PQQKKVD/1111.jpg))
+![App Screenshot](https://i.ibb.co.com/PQQKKVD/1111.jpg)
