@@ -154,15 +154,17 @@ def main():
 
                             print(f"{Fore.MAGENTA}[ Rewards ] : Reward: {reward}")
                             print(f"{Fore.MAGENTA}[ Rewards ] : Next Claim Time: {hours} hours, {minutes} minutes, {seconds} seconds")
+                            print(time_remaining_ms)
+                            print(reward)
 
-                            if time_remaining_ms == 0:
+                            if (time_remaining_ms == 0 and reward == 0):
                                 start_mining_response = requests.post(StartMiningUrl, headers=profile_headers, json=profile_data)
 
                                 if start_mining_response.status_code == 200:
                                     print(f"{Fore.GREEN}[ Mining ] : Memulai mining")
                                 else:
                                     print(f"{Fore.RED}[ Mining ] : Mining gagal")
-                            elif time_remaining_ms == 0 & reward > 0:
+                            elif time_remaining_ms == 0 and reward > 0:
                                 claim_mining = requests.post(ClaimMining, headers=profile_headers, json=profile_data)
                                 if claim_mining.status_code == 200:
                                     print(f"{Fore.GREEN}[ Mining ] : Berhasil claim mining")
