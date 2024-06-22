@@ -93,12 +93,11 @@ def main():
     akun = 1
     total_accounts = len(query_data_list)
     print(f"\n\n{Fore.CYAN+Style.BRIGHT}==============Menemukan {total_accounts} akun=================\n")
-    while True:
-        # Prompt user input for auto tasks
-        print("\n")
-        auto_tasks = input("Auto claim Task? Y/N: ").strip().upper()
-        auto_play_game = input("Auto play game? Y/N: ").strip().upper()
 
+    auto_tasks = input("Auto claim Task? Y/N: ").strip().upper()
+    auto_play_game = input("Auto play game? Y/N: ").strip().upper()
+
+    while True:
         for query_data in query_data_list:
             print(f"\n\n{Fore.CYAN+Style.BRIGHT}==============Akun {akun}=================\n")
             akun += 1
@@ -178,7 +177,7 @@ def main():
                             else:
                                 print(f"{Fore.YELLOW}[ Mining ] : Mining sedang berjalan")
 
-                            if auto_tasks == 'Y' or 'y':
+                            if auto_tasks == 'Y':
                                 list_task_response = requests.post(ListTaskUrl, headers=profile_headers, json=profile_data)
 
                                 if list_task_response.status_code == 200:
@@ -216,7 +215,7 @@ def main():
                             checkTiket = requests.get(CheckTiket, headers=gameHeaders).json().get('data', {}).get('game_count')
                             print(f"{Fore.BLUE}[ Play Game ] : Tiket sebanyak {checkTiket}")
 
-                            if auto_play_game == 'Y' or 'y':
+                            if auto_play_game == 'Y':
                                 while checkTiket > 0:
                                     print(f"{Fore.CYAN+Style.BRIGHT}[ Play Game ] : Playing game...")
                                     gameResponse = requests.get(PlayGame, headers=gameHeaders)
@@ -259,11 +258,12 @@ def main():
 
         print(f"\n\n{Fore.CYAN+Style.BRIGHT}==============Semua akun telah diproses=================\n")
 
-        for detik in range(360, 0, -1):
+        for detik in range(1, 0, -1):
             print(f"{Fore.YELLOW}[ Claim ] : Claim ulang dalam {detik} detik", end="\r", flush=True)
             time.sleep(1)
         print(f"{Fore.YELLOW}[ Claim ] : Claim ulang dalam 0 detik", end="\r", flush=True)
         print("\n")
+        akun = 1
 
 if __name__ == '__main__':
     main()
