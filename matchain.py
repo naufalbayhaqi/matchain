@@ -258,7 +258,7 @@ def main():
 
         print(f"\n\n{Fore.CYAN+Style.BRIGHT}==============Semua akun telah diproses=================\n")
 
-        for detik in range(1, 0, -1):
+        for detik in range(3600, 0, -1):
             print(f"{Fore.YELLOW}[ Claim ] : Claim ulang dalam {detik} detik", end="\r", flush=True)
             time.sleep(1)
         print(f"{Fore.YELLOW}[ Claim ] : Claim ulang dalam 0 detik", end="\r", flush=True)
