@@ -154,8 +154,6 @@ def main():
 
                             print(f"{Fore.MAGENTA}[ Rewards ] : Reward: {reward}")
                             print(f"{Fore.MAGENTA}[ Rewards ] : Next Claim Time: {hours} hours, {minutes} minutes, {seconds} seconds")
-                            print(time_remaining_ms)
-                            print(reward)
 
                             if (time_remaining_ms == 0 and reward == 0):
                                 start_mining_response = requests.post(StartMiningUrl, headers=profile_headers, json=profile_data)
